@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="lbox">
+        <h1>Add a Author</h1>
+        <form action="/addAuthor" method="POST">
+            {% csrf_token %}
+            <div class="fb">
+                First name: <input type='text' name='firstName'>
+            </div>
+            <div class="fb">
+                Last name: <input type='text' name='lastName'>
+            </div>
+            <div class="fb1">
+                notes: <input id="desc" type='text' name='notes'>
+            </div>
+            <div class="fb2">
+                <button type='submit'>Add</button>
+            </div>
+        </form>
+        <a href="http://localHost:8000/">go to books</a>
+    </div>
+    <div id="rbox">
+        <ul>
+            <li>ID</li>
+            {% for author in allTheAuthors %}
+            <li>{{author.id}}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            <li>Title</li>
+            {% for author in allTheAuthors %}
+            <li>{{author.firstName}} {{author.lastName}}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            <li>Action</li>
+            {% for author in allTheAuthors %}
+            <li><a href="http://localHost:8000/singleAuthor/{{author.id}}">View</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
